@@ -1,0 +1,5 @@
+# Garante que scripts shell sempre usem LF (Padrão Linux)
+*.sh text eol=lf
+
+# Garante que scripts PowerShell usem CRLF (Padrão Windows)
+*.ps1 text eol=crlf
