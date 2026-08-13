@@ -1,5 +1,5 @@
 <?php
-require_once '../src/components/useComponents.php';
+require_once __DIR__ . '/../components/useComponents.php';
 ?>
 
 <!DOCTYPE html>
@@ -41,4 +41,3 @@ require_once '../src/components/useComponents.php';
 
 </body>
 </html>
-

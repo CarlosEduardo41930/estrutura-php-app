@@ -19,10 +19,11 @@ class CreateRouter
         $method = $_SERVER['REQUEST_METHOD'];
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        $basePath = '/treinar/chamada';
+        $scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+        $baseDir = preg_replace('#/front/public$#', '', $scriptDir);
 
-        if (str_starts_with($uri, $basePath)) {
-            $uri = substr($uri, strlen($basePath));
+        if ($baseDir !== '' && str_starts_with($uri, $baseDir)) {
+            $uri = substr($uri, strlen($baseDir));
         }
 
         if ($uri === '') {
