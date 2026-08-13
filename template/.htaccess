@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteRule ^database/index\.php$ - [L]
+RewriteRule ^database/(.*)$ database/index.php [L,QSA]
+
+RewriteRule ^$ front/public/index.php [L]
+RewriteRule ^(.+)$ front/public/index.php [L,QSA]
