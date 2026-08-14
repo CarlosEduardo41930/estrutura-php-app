@@ -3,5 +3,5 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$banco = "chamada";
+$banco = "meu_projeto";
 

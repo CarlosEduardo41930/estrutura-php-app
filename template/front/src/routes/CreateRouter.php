@@ -1,5 +1,27 @@
 <?php
 
+/*
+ * ==========================================================
+ * DETECTA O CAMINHO DO PROJETO AUTOMATICAMENTE
+ * Não precisa mudar nada entre local e hospedagem
+ * ==========================================================
+ */
+
+$docRoot  = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
+$arquivo  = str_replace('\\', '/', __DIR__);
+$frontDir = dirname(dirname($arquivo));
+
+$BASE = str_replace($docRoot, '', $frontDir);
+
+if ($BASE === '' || $BASE === '/') {
+    $BASE = '';
+}
+
+/*
+ * Corrige o CreateRouter para funcionar
+ * tanto na raiz quanto em subpasta
+ */
+
 class CreateRouter
 {
     private array $routes = [];
@@ -16,14 +38,13 @@ class CreateRouter
 
     public function dispatch(): void
     {
+        global $BASE;
+
         $method = $_SERVER['REQUEST_METHOD'];
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        $scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-        $baseDir = preg_replace('#/front/public$#', '', $scriptDir);
-
-        if ($baseDir !== '' && str_starts_with($uri, $baseDir)) {
-            $uri = substr($uri, strlen($baseDir));
+        if (!empty($BASE) && str_starts_with($uri, $BASE)) {
+            $uri = substr($uri, strlen($BASE));
         }
 
         if ($uri === '') {
@@ -41,3 +62,5 @@ class CreateRouter
         call_user_func($callback);
     }
 }
+
+?>

@@ -44,3 +44,18 @@ function mostrarTabela()
 
     echo '</table>';
 }
+
+
+function mostrarErros()
+{
+    if (!empty($_SESSION['erro'])) {
+
+        foreach ($_SESSION['erro'] as $erro) {
+            echo '<div class="msg-erro">' . htmlspecialchars($erro) . '</div>';
+        }
+
+        unset($_SESSION['erro']);
+    }
+}
+
+?>

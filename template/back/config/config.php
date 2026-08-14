@@ -1,10 +1,12 @@
 <?php
 
 $host = "localhost";
-$db   = "nome _do_banco";
-$user = "nome_do_usuario";
-$pass = "senha_do_banco";
+$db   = "meu_projeto";  //nome _do_banco
+$user = "root";  //nome_do_usuario
+$pass = "";   //senha_do_banco
 $charset = "utf8mb4";
+
+
 
 $conexao = "mysql:host=$host;dbname=$db;charset=$charset";
 

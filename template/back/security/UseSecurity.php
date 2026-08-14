@@ -125,3 +125,12 @@ function validarCPF($cpf)
         $_SESSION['erro'][] = "Erro ao cadastrar: " . $e->getMessage();
     }
 }
+
+function validarEmail(string $email)
+{
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['erro'][] = "E-mail inválido";
+    }
+}
+
+?>
