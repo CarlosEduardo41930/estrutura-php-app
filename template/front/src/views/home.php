@@ -1,5 +1,5 @@
 <?php
-session_start();
+global $BASE; // Add esta linha para resolver o aviso do VS Code
 require_once '../src/components/useComponents.php';
 ?>
 
@@ -164,11 +164,11 @@ require_once '../src/components/useComponents.php';
 
     <!-- NAVBAR -->
     <div class="navbar">
-        <a href="/">Meu Projeto</a>
+        <a href=".">Meu Projeto</a>
         <div class="nav-links">
-            <a href="/">Início</a>
-            <a href="/login">Entrar</a>
-            <a href="/database/configuracao">Banco</a>
+            <a href=".">Início</a>
+            <a href="login">Entrar</a>
+            <a href="database/configuracao">Banco</a>
         </div>
     </div>
 

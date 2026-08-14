@@ -2,25 +2,23 @@
 
 /*
  * ==========================================================
- * DETECTA O CAMINHO DO PROJETO AUTOMATICAMENTE
- * Não precisa mudar nada entre local e hospedagem
+ * DETECTA A PASTA RAIZ DO PROJETO AUTOMATICAMENTE
+ * Funciona em qualquer pasta local ou servidor de hospedagem
  * ==========================================================
  */
 
 $docRoot  = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
 $arquivo  = str_replace('\\', '/', __DIR__);
-$frontDir = dirname(dirname($arquivo));
 
-$BASE = str_replace($docRoot, '', $frontDir);
+// Sobe 3 níveis (src/routes -> src -> front -> RAIZ DO PROJETO)
+$rootDir  = str_replace('\\', '/', dirname(dirname(dirname($arquivo))));
 
-if ($BASE === '' || $BASE === '/') {
+// Calcula o prefixo da URL dinamicamente
+$BASE = str_replace($docRoot, '', $rootDir);
+
+if ($BASE === '/' || $BASE === '\\') {
     $BASE = '';
 }
-
-/*
- * Corrige o CreateRouter para funcionar
- * tanto na raiz quanto em subpasta
- */
 
 class CreateRouter
 {
@@ -43,11 +41,13 @@ class CreateRouter
         $method = $_SERVER['REQUEST_METHOD'];
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+        // Remove o prefixo da pasta base da URL se ele existir
         if (!empty($BASE) && str_starts_with($uri, $BASE)) {
             $uri = substr($uri, strlen($BASE));
         }
 
-        if ($uri === '') {
+        // Garante que a barra inicial exista
+        if ($uri === '' || $uri === false) {
             $uri = '/';
         }
 

@@ -1,5 +1,5 @@
 <?php
-session_start();
+global $BASE;
 require_once '../src/components/useComponents.php';
 ?>
 

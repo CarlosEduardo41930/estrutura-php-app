@@ -1,17 +1,17 @@
 <?php
-session_start();
+global $BASE;
 require_once '../src/components/useComponents.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login — Meu Projeto</title>
-
+    <base href="<?= $BASE ?>/">
     <style>
-
         * {
             box-sizing: border-box;
         }
@@ -33,7 +33,7 @@ require_once '../src/components/useComponents.php';
             border-radius: 12px;
             width: 400px;
             max-width: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
         }
 
         .card h1 {
@@ -102,9 +102,9 @@ require_once '../src/components/useComponents.php';
             border-radius: 4px;
             font-size: 14px;
         }
-
     </style>
 </head>
+
 <body>
 
     <div class="card">
@@ -113,7 +113,7 @@ require_once '../src/components/useComponents.php';
 
         <?php mostrarErros(); ?>
 
-        <form method="POST" action="/login">
+        <form method="POST" action="login">
 
             <label for="email">E-mail</label>
             <input
@@ -121,8 +121,7 @@ require_once '../src/components/useComponents.php';
                 id="email"
                 name="email"
                 required
-                placeholder="seu@email.com"
-            >
+                placeholder="seu@email.com">
 
             <label for="senha">Senha</label>
             <input
@@ -130,8 +129,7 @@ require_once '../src/components/useComponents.php';
                 id="senha"
                 name="senha"
                 required
-                placeholder="Sua senha"
-            >
+                placeholder="Sua senha">
 
             <input type="hidden" name="acao" value="login">
 
@@ -139,9 +137,10 @@ require_once '../src/components/useComponents.php';
 
         </form>
 
-        <a href="/" class="voltar">Voltar ao início</a>
+        <a href="." class="voltar">Voltar ao início</a>
 
     </div>
 
 </body>
+
 </html>
